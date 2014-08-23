@@ -12,15 +12,19 @@ h3 {margin:5px;}
 #meta {margin:5px;}
 
 /* style for correspondences */
-#correspondence_table {border-spacing:2px;border-collapse:separate;vertical-align:top;text-align:justify} 
-#correspondence_table th {border-radius:3px;vertical-align:top; border: 2px solid black;}
-#correspondences {float: left; display: inline;margin:5px;}
-#correspondence_table td {vertical-align:top;border: 2px solid gray;}
-#correspondence_table th.targets{min-width:60px;cursor:pointer;}
-#correspondence_table tbody {border-spacing:2px;border-collapse:separate; display:block;position:relative;overflow:hidden;}
-#correspondence_table thead {border-spacing:2px;border-collapse:separate; display:block;}
+
+#correspondence_data table {border-collapse:separate;border-spacing:1px;}
+#correspondence_data thead {border-collapse:separate;border-spacing:1px;}
+#correspondence_data thead > tr{}
+#correspondence_data thead > tr > th {border-radius:2px;border: 2px solid gray;font-weight:bold;}
+#correspondence_data tbody > tr > td {border-radius:2px;border: 2px solid gray;}
+#correspondence_data tbody > tr {}
 
 
+#correspondences {float: left; display: inline; margin:5px;}
+
+#correspondence_data {position:relative;overflow:hidden;border: 2px solid black; border-radius:5px; padding:5px;}
+#correspondence_header {margin-bottom:5px;padding:5px;border: 2px solid black; border-radius:5px; background-color: lightgray;}
 
 /* style for cognates table */
 #cognates {float:left; margin:5px; display:inline;}
@@ -28,14 +32,18 @@ h3 {margin:5px;}
 #cognates_table th {vertical-align: top; border: 2px solid black;}
 #cognates_table td {vertical-align: top; border: 2px solid lightgray;}
 
-#correspondence_data {position:relative;overflow:hidden;border: 2px solid black; border-radius:5px; padding:5px;}
-#cognates_data {border: 2px solid black;border-radius: 5px;padding:5px;position:relative;overflow:hidden;}
-th.cognates_table_header {cursor:pointer;text-align:justify;border:2px solid black; border-radius: 5px; background-color:lightgray;}
-#cognates_header       {margin-bottom:5px;padding:5px;border: 2px solid black; border-radius:5px; background-color: lightgray;}
-#correspondence_header {margin-bottom:5px;padding:5px;border: 2px solid black; border-radius:5px; background-color: lightgray;}
-#selector {float: left; margin:5px; display:inline;}
+#cognates_data {border: 2px solid black;border-radius: 5px;padding:5px;position:relative;overflow:auto;}
+th.cognates_table_header {padding:5px;cursor:default;text-align:center;border:2px solid black; border-radius: 5px; background-color:lightgray;}
+th.cognates_table_header > span.glyphicon {cursor:pointer;}
+#cognates_header {text-align:left; margin-bottom:5px;padding:5px;border: 2px solid black; border-radius:5px; background-color: lightgray;}
+
+
+#selector {float: left; margin:5px; display:block;}
 #selector_header {margin-bottom:5px;padding:5px;border: 2px solid black; border-radius:5px; background-color: lightgray;}
 
+.header {
+  font-weight: bold;
+}
 .handle {
   cursor: -moz-grab;
   cursor: -webkit-grab;
@@ -45,11 +53,36 @@ th.cognates_table_header {cursor:pointer;text-align:justify;border:2px solid bla
   cursor: -moz-grab;
   cursor: -webkit-grab;
 }
+
 .source {
   background-color: lightgray;
+  //border: 2px solid white !important;
 }
 .source > .residue {
   cursor:pointer;
 }
+.data {background-color:white;}
+
+.sortables {
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.pointed {cursor:pointer;}
 
 body.dragging {cursor: move !important;}
+
+.multiselect-container {
+  padding: 15px;
+  font-size: 90%;
+  position:absolute;
+  top: inherit;
+  left: inherit;
+}
+.multisect {
+  //margin: 5px;
+  padding: 15px;
+}
+
+.invisible {display:none!important;}
+
