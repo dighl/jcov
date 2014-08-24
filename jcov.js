@@ -3,7 +3,7 @@
  * author   : Johann-Mattis List
  * email    : mattis.list@lingulist.de
  * created  : 2014-08-20 11:51
- * modified : 2014-08-20 11:51
+ * modified : 2014-08-24 18:43
  *
  */
 
@@ -357,6 +357,7 @@ JCOV.showOccurrences = function (sound,show)
   /* check for undefined occurrences */
   if(sound == 'ALL')
   {
+    var clen = Object.keys(WLS).length;
 
     /* check whether concepts are of zero length */
     if('ALL' in JCOV.SORTED)
@@ -367,20 +368,14 @@ JCOV.showOccurrences = function (sound,show)
     {
       occs = Object.keys(WLS);
       occs.sort();
+      occs = occs.slice(0,20);
       JCOV.concepts = occs;
     }
     else
     {
       occs = JCOV.concepts;
     }
-    if(occs.length != 1)
-    {
-      header += 'Showing cognate sets occurring in '+occs.length + ' concepts:';
-    }
-    else
-    {
-      header += 'Showing cognate sets occuring in 1 concept:';
-    }
+    header += 'Showing cognate sets occurring in '+occs.length + ' out of '+clen+' concepts:';
   }
   else
   {
@@ -665,6 +660,29 @@ JCOV.showOccurrences = function (sound,show)
 
 JCOV.createSelectors = function()
 {
+  /* create concept selector */
+  var tmp_selections = [];
+  var txt = '<select class="multiselect" id="selectora" multiple>';
+  var counter = 1;
+  var concepts = Object.keys(WLS);
+  concepts.sort();
+
+  for(var i=0,concept;concept=concepts[i];i++)
+  {
+    if(counter < 21)
+    {
+      tmp_selections.push(concept);
+      txt += '<option value="'+concept+'" selected>'+concept+'</option>';
+    }
+    else
+    {
+      txt += '<option value="'+concept+'">'+concept+'</option>';
+    }
+    counter += 1;
+  }
+  txt += '</select>';
+  document.getElementById('concept_selector').innerHTML = txt;
+
   /* create language selector */
   var tmp_selections = [];
   var txt = '<select class="multiselect" id="selectorix" multiple>';
@@ -696,6 +714,17 @@ JCOV.createSelectors = function()
     buttonContainer: '<div style="display:inline" />',
     buttonText: function(options,select){return 'Select Doculects <b class="caret"></b>';}
   }); 
+  $('#selectora').multiselect({
+    selectAll:true,
+    enableFiltering:true,
+    maxHeight: window.innerHeight-150, /* change later to cog_height */
+    buttonClass: 'btn-link',
+    includeSelectAllOption: true,
+    enableCaseInsensitiveFiltering: true,
+    buttonContainer: '<div style="display:inline" />',
+    buttonText: function(options,select){return 'Select Concepts <b class="caret"></b>';}
+  }); 
+
   
   JCOV.selections = tmp_selections;
 
@@ -746,7 +775,7 @@ JCOV.createSelectors = function()
       buttonContainer: '<div style="display:inline" />',
       buttonText: function(options,select){return 'Select Sounds <b class="caret"></b>';}
   }); 
-
+  
   $('#selectorz').multiselect({
     selectAll:true,
     maxHeight: window.innerHeight-150, /* change later to cog_height */
@@ -765,7 +794,18 @@ JCOV.createSelectors = function()
 JCOV.resetSelection = function()
 {
   JCOV.loading(true);
-
+  /* reset concepts selection */
+  var selector = document.getElementById('selectora');
+  var concept_selections = [];
+  for(var i=0,option;option=selector.options[i];i++)
+  {
+    if(option.selected)
+    {
+      concept_selections.push(option.value);
+    }
+  }
+  JCOV.concepts = concept_selections;
+  
   /* reset sounds selection */
   var selector = document.getElementById('selectorway');
   var sound_selections = [];
@@ -870,7 +910,7 @@ JCOV.setHeight = function()
   var cur_height = window.innerHeight;
   var cur_width = window.innerWidth;
 
-  var cor_height = cur_height - 180;
+  var cor_height = cur_height - 140;
   
   if(JCOV.settings['correspondences'] && JCOV.settings['cognates'])
   {
