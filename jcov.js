@@ -214,7 +214,7 @@ JCOV.showCorrs = function (this_lang,show)
   
   /* create the header */
   var header = '<thead>';
-  header += '<tr><th class="sound_handle"></th><th class="source">SOUND</th><th class="source">CONTEXT</th>';
+  header += '<tr><th class="sound_handle"></th><th class="source">SOUND</th><th class="source">CTXT</th><th class="source">OCC</th>';
   for(var i=0,olang;olang=olangs[i];i++)
   {
     header += '<th title="show correspondences for '+olang+'" class="targets pointed" onclick="JCOV.showCorrs(\''+olang+'\')">'+olang+'</th>';
@@ -277,7 +277,7 @@ JCOV.showCorrs = function (this_lang,show)
       else
       {
         counter += 1;
-        txt += '<tr class="correspondence_row" id="tr_'+key+'"><td data-value="'+key+'" class="ctab_numbers sound_handle pointed" id="cnum_'+counter+'"><span class="glyphicon glyphicon-move"></span></td><td title="show all occurrences of '+this_sound+'/'+this_context+'" class="source pointed" onclick="JCOV.showOccurrences(\''+key+'\',\'show\')">'+plotWord(this_sound)+'</td><td class="source">'+this_context+'</td><td>'+tbl.join('</td><td>')+'</td></tr>';
+        txt += '<tr class="correspondence_row" id="tr_'+key+'"><td data-value="'+key+'" class="ctab_numbers sound_handle pointed" id="cnum_'+counter+'"><span class="glyphicon glyphicon-move"></span></td><td title="show all occurrences of '+this_sound+'/'+this_context+'" class="source pointed" onclick="JCOV.showOccurrences(\''+key+'\',\'show\')">'+plotWord(this_sound)+'</td><td class="source">'+this_context+'</td><td class="source">'+OCCS[key].length+'</td><td>'+tbl.join('</td><td>')+'</td></tr>';
       }
     }
   }
