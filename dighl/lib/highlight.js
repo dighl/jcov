@@ -261,6 +261,19 @@ var DOLGO = {
   "Ɂ": "H"
 };
 
+/* simple helper function to retrieve sound classes */
+function getSoundClass(sound)
+{
+    
+		if (sound in DOLGO){dolgo = DOLGO[sound]}
+    else if (sound.slice(0,2) in DOLGO){dolgo = DOLGO[sound.slice(0,2)];}
+    else if (sound.slice(0,1) in DOLGO){dolgo = DOLGO[sound.slice(0,1)];}
+    else if (sound.slice(1,3) in DOLGO){dolgo = DOLGO[sound.slice(1,3)];}
+    else if (sound.slice(1,2) in DOLGO){dolgo = DOLGO[sound.slice(1,2)];}
+    else if (sound == "-"){dolgo = "-";}
+
+    return dolgo;
+}
 
 function plotWord(word, tag)
 {
@@ -295,11 +308,11 @@ function plotWord(word, tag)
     
     if(phon != '-')
     {            
-	    text += '<'+tag+' class="residue '+dolgo+'">'+phon+'</'+tag+'>';
+	    text += '<'+tag+' class="residue '+dolgo+'">'+phon+' </'+tag+'>';
     }
 		else
     {
-	    text += '<'+tag+' class="residue '+dolgo+'">'+phon+'</'+tag+'>';
+	    text += '<'+tag+' class="residue '+dolgo+'">'+phon+' </'+tag+'>';
     }
   }
 

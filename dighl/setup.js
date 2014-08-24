@@ -4,6 +4,7 @@ loadModule('dighl/lib/vendor/bootstrap.min.js');
 loadModule('dighl/lib/vendor/bootstrap-multiselect.js');
 //loadModule('dighl/lib/vendor/jquery.mousewheel.js');
 loadModule('dighl/lib/vendor/jquery.fixedheadertable.min.js');
+loadModule('dighl/lib/vendor/FileSaver.js');
 //loadModule('dighl/lib/vendor/perfect-scrollbar.min.js');
 
 //loadModule('dighl/lib/vendor/jquery.dataTables.min.js');

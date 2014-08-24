@@ -68,3 +68,31 @@ function loadFile(url,async)
     success: function(data) { store.innerText = data; }
   });
 }
+
+/* http://stackoverflow.com/questions/1141302/is-there-a-sleep-function-in-javascript */
+function sleep(delay) {
+  var start = new Date().getTime();
+  while (new Date().getTime() < start + delay);
+}
+
+function transpose(array)
+{
+  try{
+  var new_array = [];
+  for(var i=0;i<array[0].length;i++)
+  {
+    var tmp_row = [];
+    for(var j=0;j<array.length;j++)
+    {
+      tmp_row.push(array[j][i]);
+    }
+    new_array.push(tmp_row);
+  }
+  return new_array;
+  }
+  catch(e)
+  {
+    alert("TRANSPOSE ERROR: "+JSON.stringify(array));
+    return array;
+        }
+}
