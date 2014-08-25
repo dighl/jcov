@@ -9,6 +9,7 @@ loadModule('dighl/lib/vendor/jquery-ui.js');
 loadModule('dighl/lib/vendor/bootstrap.min.js');
 loadModule('dighl/lib/vendor/bootstrap-multiselect.js');
 loadModule('dighl/lib/vendor/jquery.fixedheadertable.min.js');
+loadModule('dighl/lib/vendor/spin.js');
 loadModule('dighl/lib/vendor/FileSaver.js');
 loadModule('dighl/lib/utils.js');
 loadModule('dighl/lib/highlight.js');

@@ -24,7 +24,7 @@ JCOV.settings['sound_order'] = ["K", "T", "P", "S", "N", "M", "R", "J", "W", "H"
 JCOV.settings['refresh'] = false;
 JCOV.settings['hide_empty_corrs'] = true;
 JCOV.settings['collapse_cognates'] = false;
-JCOV.settings['timeout'] = 1;
+JCOV.settings['timeout'] = 10;
 JCOV.settings['reduce_alignments'] = true;
 
 JCOV.toggleRefresh = function()
@@ -1058,7 +1058,9 @@ JCOV.init = function()
       }
     }
   );
-
+  var pop = document.getElementById('popup_background');
+  var spinner = new Spinner().spin();
+  pop.appendChild(spinner.el);
 }
 
 JCOV.init();
