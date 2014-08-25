@@ -1007,6 +1007,7 @@ $('#handles').sortable({
 
 JCOV.init = function()
 {
+
   JCOV.createSelectors();
   JCOV.showOccurrences('ALL');
   JCOV.togglePanel('correspondences');
@@ -1061,6 +1062,9 @@ JCOV.init = function()
   var pop = document.getElementById('popup_background');
   var spinner = new Spinner().spin();
   pop.appendChild(spinner.el);
+  var brand = document.getElementById('brand');
+  brand.innerHTML = 'jCoV &lt;'+FILE+'&gt;';
+  brand.href = FILE;
 }
 
 JCOV.init();
