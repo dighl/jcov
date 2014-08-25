@@ -42,7 +42,7 @@
             </select>
           </span>
           <input type="number" value="2" title="Minimal number of sound correspondences" id="minoccs" class="form-control" style="width:60px" />
-          <button type="submit" onclick="JCOV.resetSelection();" class="btn btn-default" style="padding:8px"><span class="glyphicon glyphicon-refresh"></span></button>
+          <button type="submit" onclick="JCOV.doIt(function(){JCOV.resetSelection();});" class="btn btn-default" style="padding:8px"><span class="glyphicon glyphicon-refresh"></span></button>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="http://github.com/dighl/jcov/">GitHub</a></li>

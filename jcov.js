@@ -24,7 +24,7 @@ JCOV.settings['sound_order'] = ["K", "T", "P", "S", "N", "M", "R", "J", "W", "H"
 JCOV.settings['refresh'] = false;
 JCOV.settings['hide_empty_corrs'] = true;
 JCOV.settings['collapse_cognates'] = false;
-JCOV.settings['delay'] = 500;
+JCOV.settings['timeout'] = 25;
 JCOV.settings['reduce_alignments'] = true;
 
 JCOV.toggleRefresh = function()
@@ -63,24 +63,21 @@ JCOV.togglePanel = function(elm)
   }
 }
 
+JCOV.doIt = function(code)
+{
+  JCOV.loading(true);
+  setTimeout(function(){code();JCOV.loading(false)},JCOV.settings['timeout']);
+}
+
 JCOV.loading = function(start)
 {
   if(start)
   {
     $('#popup_background').show();  
-    //var outer = document.createDocumentFragment();
-      //var loading = document.createElement('div');
-      //loading.id = 'popup_backgroundx';
-      //loading.className="popup_background";
-      //var text = '<span class="popup_message"><span class="glyphicon glyphicon-repeat"></span></span>';
-      //loading.innerHTML = text;
-      //outer.appendChild(loading);
   }
   else
   {
-    //setTimeout(function(){
-    $('#popup_background').fadeOut('slow');
-    //},JCOV.settings['delay']);
+    $('#popup_background').hide();
   }
 }
 
@@ -407,23 +404,23 @@ JCOV.showOccurrences = function (sound,show)
     }
   }
   /* fill in the rest of the header */
-  header += '<span title="hide panel" onclick="JCOV.togglePanel(\'cognates\');" class="glyphicon glyphicon-remove pull-right pointed"></span>';
-  header += '<span title="show all cognate sets" onclick="JCOV.showOccurrences(\'ALL\');" class="glyphicon glyphicon-list pull-right pointed"></span>';
+  header += '<span title="hide panel" onclick="JCOV.loading(true);setTimeout(function(){JCOV.togglePanel(\'cognates\');},JCOV.settings.timeout);JCOV.loading(false);" class="glyphicon glyphicon-remove pull-right pointed"></span>';
+  header += '<span title="show all cognate sets" onclick="JCOV.doIt(function(){JCOV.showOccurrences(\'ALL\');});" class="glyphicon glyphicon-list pull-right pointed"></span>';
   if(JCOV.settings['collapse_cognates'])
   {
-    header += '<span title="expand all" onclick="JCOV.settings[\'collapse_cognates\']=false;JCOV.showOccurrences(\''+sound+'\',\''+show+'\');" class="glyphicon glyphicon-resize-full pointed pull-right"></span>';
+    header += '<span title="expand all" onclick="JCOV.doIt(function(){JCOV.settings[\'collapse_cognates\']=false;JCOV.showOccurrences(\''+sound+'\',\''+show+'\');});" class="glyphicon glyphicon-resize-full pointed pull-right"></span>';
   }
   else{
-    header += '<span title="collapse all" onclick="JCOV.settings[\'collapse_cognates\']=true;JCOV.showOccurrences(\''+sound+'\',\''+show+'\');" class="glyphicon glyphicon-resize-small pull-right pointed"></span>';
+    header += '<span title="collapse all" onclick="JCOV.doIt(function(){JCOV.settings[\'collapse_cognates\']=true;JCOV.showOccurrences(\''+sound+'\',\''+show+'\');});" class="glyphicon glyphicon-resize-small pull-right pointed"></span>';
   }
 
   header += '<span title="export current table" onclick="JCOV.exportData(\'cognates_table\')" class="pointed glyphicon glyphicon-export pull-right"></span>';
 
   if(sound in JCOV.SORTED)
   {
-    header += '<span title="destroy currently saved order of items" onclick="JCOV.destroyOrder(\''+sound+'\');" class="pointed glyphicon glyphicon-floppy-remove pull-right"></span> ';
+    header += '<span title="destroy currently saved order of items" onclick="JCOV.doIt(function(){JCOV.destroyOrder(\''+sound+'\');});" class="pointed glyphicon glyphicon-floppy-remove pull-right"></span> ';
   }
-  header += '<span title="save current order of items" onclick="JCOV.saveOrder(\''+sound+'\',\'cognates_table_header\');" class="pointed glyphicon glyphicon-floppy-save pull-right"></span> ';
+  header += '<span title="save current order of items" onclick="JCOV.doIt(function(){JCOV.saveOrder(\''+sound+'\',\'cognates_table_header\');});" class="pointed glyphicon glyphicon-floppy-save pull-right"></span> ';
 
   var txt = '<table id="cognates_table">';
   txt += '<thead><tr><th>ID</th><th>Doculect</th><th>Concept</th><th>IPA</th><th>COGID</th><th>Alignment</th></tr></thead>';
@@ -796,7 +793,6 @@ JCOV.createSelectors = function()
 
 JCOV.resetSelection = function()
 {
-  JCOV.loading(true);
   /* reset concepts selection */
   var selector = document.getElementById('selectora');
   var concept_selections = [];
@@ -905,7 +901,6 @@ JCOV.resetSelection = function()
   }
   
   JCOV.setHeight();
-  JCOV.loading(false);
 }
 
 JCOV.setHeight = function()
