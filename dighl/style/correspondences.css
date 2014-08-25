@@ -16,14 +16,14 @@ h3 {margin:5px;}
 #correspondence_data table {border-collapse:separate;border-spacing:1px;}
 #correspondence_data thead {border-collapse:separate;border-spacing:1px;}
 #correspondence_data thead > tr{}
-#correspondence_data thead > tr > th {border-radius:2px;border: 2px solid black;font-weight:bold;}
-#correspondence_data tbody > tr > td {border-radius:2px;border: 2px solid black;}
+#correspondence_data thead > tr > th {padding-right:5px;padding-left:5px;border-radius:2px;border: 2px solid black;font-weight:bold;}
+#correspondence_data tbody > tr > td {padding-right:5px;padding-left:5px;border-radius:2px;border: 2px solid black;}
 #correspondence_data tbody > tr {}
 
 #cognates_data table {border-collapse:separate;border-spacing:1px;width:auto;}
 #cognates_data thead {border-collapse:separate;border-spacing:1px;}
-#cognates_data thead > tr > th {text-align:center;border-radius:5px;background-color:lightgray;border-radius:2px;border: 2px solid black;font-weight:bold;}
-#cognates_data tbody > tr > td {border: 2px solid black;font-size:16px;color:black;}
+#cognates_data thead > tr > th {padding-left:5px;padding-right:5px;text-align:center;border-radius:5px;background-color:lightgray;border-radius:2px;border: 2px solid black;font-weight:bold;}
+#cognates_data tbody > tr > td {padding-left:5px;padding-right:5px;border: 2px solid black;font-size:16px;color:black;}
 #correspondences {float: left; display: inline; margin:5px;}
 
 #correspondence_data {position:relative;overflow:hidden;border: 2px solid black; border-radius:5px; padding:5px;}
