@@ -24,7 +24,7 @@ JCOV.settings['sound_order'] = ["K", "T", "P", "S", "N", "M", "R", "J", "W", "H"
 JCOV.settings['refresh'] = false;
 JCOV.settings['hide_empty_corrs'] = true;
 JCOV.settings['collapse_cognates'] = false;
-JCOV.settings['timeout'] = 1;
+JCOV.settings['timeout'] = 10;
 JCOV.settings['reduce_alignments'] = true;
 
 JCOV.toggleRefresh = function()
@@ -65,15 +65,18 @@ JCOV.togglePanel = function(elm)
 
 JCOV.doIt = function(code)
 {
-  JCOV.loading(true);
-  setTimeout(function(){code();JCOV.loading(false)},JCOV.settings['timeout']);
+  $('#popup_background').toggle();
+  setTimeout(function(){
+    code();
+    $('#popup_background').toggle();
+  },JCOV.settings.timeout);
 }
 
 JCOV.loading = function(start)
 {
   if(start)
   {
-    $('#popup_background').show();  
+    $('#popup_background').toggle();  
   }
   else
   {
