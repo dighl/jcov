@@ -67,17 +67,20 @@ JCOV.loading = function(start)
 {
   if(start)
   {
-      var loading = document.createElement('div');
-      loading.id = 'popup_background';
-      loading.className="popup_background";
-      var text = '<span class="popup_message"><span class="glyphicon glyphicon-repeat"></span></span>';
-      document.body.appendChild(loading);
-      loading.innerHTML = text;
+    $('#popup_background').show();  
+    //var outer = document.createDocumentFragment();
+      //var loading = document.createElement('div');
+      //loading.id = 'popup_backgroundx';
+      //loading.className="popup_background";
+      //var text = '<span class="popup_message"><span class="glyphicon glyphicon-repeat"></span></span>';
+      //loading.innerHTML = text;
+      //outer.appendChild(loading);
   }
   else
   {
-    setTimeout(function(){
-      $('#popup_background').remove();},JCOV.settings['delay']);
+    //setTimeout(function(){
+    $('#popup_background').fadeOut('slow');
+    //},JCOV.settings['delay']);
   }
 }
 
@@ -1061,3 +1064,5 @@ JCOV.init = function()
 }
 
 JCOV.init();
+
+$(window).load(function(){$("#popup_background").fadeOut("slow");});
