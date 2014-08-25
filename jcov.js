@@ -1066,6 +1066,8 @@ JCOV.init = function()
   brand.innerHTML = 'jCoV &lt;'+FILE+'&gt;';
   brand.href = FILE;
 }
-$(window).load(function(){$("#popup_background").fadeOut("slow");});
 
 JCOV.init();
+
+$(window).load(function(){$("#popup_background").fadeOut("slow");});
+
