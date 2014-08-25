@@ -1067,9 +1067,9 @@ JCOV.init = function()
   brand.href = FILE;
 }
 
-$(document).ready(
+document.onload = 
     function(){
       JCOV.init();
-    });
+    };
 
 $(window).load(function(){$("#popup_background").fadeOut("slow");});
